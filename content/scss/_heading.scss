@@ -1,0 +1,21 @@
+.o-title {
+    font-size: 28px;
+    font-weight: bold;
+
+    &--md {
+        font-size: 20px;
+    }
+
+    &--lg {
+        font-size: 32px;
+    }
+
+    &--wh {
+        color: #fff;
+    }
+}
+
+.l-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
