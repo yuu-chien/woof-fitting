@@ -12,14 +12,15 @@ function getTotalGoods() {
     axios.get(`${api_path}/products`)
         .then((res) => {
             totalGoods = res.data.products;
-            renderTotalGoods();
+            renderTotalGoods(totalGoods);
         });
 }
 getTotalGoods();
 
 // 取得所有產品列表：渲染到畫面上
-function renderTotalGoods() {
-    totalGoods.forEach((product) => {
+function renderTotalGoods(infos) {
+    $goodsList.innerHTML = '';
+    infos.forEach((product) => {
         $goodsList.innerHTML += `
         <li class="l-viewList__item">
             <div class="c-card">
@@ -45,3 +46,20 @@ function renderTotalGoods() {
         </li>`;
     });
 }
+
+// 商品篩選
+document.querySelectorAll(('[data-filter]')).forEach((item) => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        let conditions = item.getAttribute('data-filter');
+        let filterGoods = [];
+        totalGoods.filter((product) => {
+            if (!conditions) {
+                renderTotalGoods(totalGoods);
+            } else if (conditions === product.category) {
+                filterGoods.push(product);
+                renderTotalGoods(filterGoods);
+            }
+        })
+    });
+});
