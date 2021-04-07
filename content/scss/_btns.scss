@@ -1,0 +1,13 @@
+.o-btn {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+
+    &:hover {
+        background-color: #044534;
+    }
+}

@@ -5,9 +5,9 @@ body {
   font-weight: normal;
   line-height: 1.5;
   font-family: "Noto Sans TC", sans-serif;
-  color: #000;
+  color: #212529;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: #000;
+  -webkit-tap-highlight-color: #212529;
 }
 
 main {
@@ -308,6 +308,51 @@ iframe {
   margin: 0 auto;
 }
 
+.o-btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+}
+
+.o-btn:hover {
+  background-color: #044534;
+}
+
+.c-card {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 225px;
+}
+
+.c-card__img {
+  width: 100%;
+  height: 302px;
+  overflow: hidden;
+}
+
+.c-card__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.c-card__tit {
+  padding: 8px 0;
+}
+
+.c-card__tag {
+  position: absolute;
+  top: 8px;
+  right: -4px;
+}
+
 .o-title {
   font-size: 28px;
   font-weight: bold;
@@ -319,6 +364,10 @@ iframe {
 
 .o-title--lg {
   font-size: 32px;
+}
+
+.o-title--normal {
+  font-weight: normal;
 }
 
 .o-title--wh {
@@ -334,11 +383,13 @@ iframe {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin: 0 -15px;
 }
 
 .l-viewList__item {
-  margin: 0 15px;
+  margin: 0 15px 28px;
 }
 
 .l-viewList__img {
@@ -367,5 +418,17 @@ iframe {
   height: 420px;
   background: url(../images/kv.jpg) no-repeat center center;
   background-size: cover;
+}
+
+.o-tag {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 88px;
+  height: 44px;
+  padding: 6px;
+  font-size: 20px;
+  text-align: center;
+  color: #FFF;
+  background-color: #000;
 }
 /*# sourceMappingURL=main.min.css.map */

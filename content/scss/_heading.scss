@@ -10,6 +10,10 @@
         font-size: 32px;
     }
 
+    &--normal {
+        font-weight: normal;
+    }
+
     &--wh {
         color: #fff;
     }
@@ -19,3 +23,6 @@
     margin-bottom: 32px;
     text-align: center;
 }
+
+
+.c-txtPile {}
