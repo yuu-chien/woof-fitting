@@ -17,7 +17,7 @@ function getTotalGoods() {
 }
 getTotalGoods();
 
-// 取得所有產品列表：渲染到畫面上
+// 將產品列表渲染到畫面
 function renderTotalGoods(infos) {
     $goodsList.innerHTML = '';
     infos.forEach((product) => {
@@ -63,3 +63,43 @@ document.querySelectorAll(('[data-filter]')).forEach((item) => {
         })
     });
 });
+
+
+// 取得購物車資料
+let totalChart,
+    $chartList = document.querySelector('[data-chartList]');
+
+function getTotalChart() {
+    axios.get(`${api_path}/carts`)
+        .then((res) => {
+            totalChart = res.data;
+            renderTotalChart(totalChart)
+        });
+}
+
+function renderTotalChart(items) {
+
+    items["carts"].forEach((product) => {
+        $chartList.innerHTML += `
+        <li class="c-chartList__row">
+            <div class="c-chartList__img">
+                <img src="${product.product.images}" alt="${product.product.title}">
+            </div>
+            <div class="c-chartList__item">${product.product.title}</div>
+            <div class="c-chartList__item">
+                <div class="o-title o-title--md o-title--normal">NT$ <span>${product.product.price}</span></div>
+            </div>
+            <div class="c-chartList__item">${product.quantity}</div>
+            <div class="c-chartList__item">
+                <div class="o-title o-title--md o-title--normal">NT$ <span>${items.finalTotal}</span></div>
+            </div>
+            <div class="c-chartList__ico">
+                <a href="#">
+                    <i class="o-icon o-icon--clear"></i>
+                </a>
+            </div>
+        </li> `;
+    })
+}
+
+getTotalChart();
