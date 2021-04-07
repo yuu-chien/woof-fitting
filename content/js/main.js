@@ -2,8 +2,8 @@
 const api_path = "https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ch.yu";
 
 
+// =====================
 // 取得所有產品列表
-
 let totalGoods,
     $goodsList = document.querySelector('[data-goodsList]');
 
@@ -47,6 +47,8 @@ function renderTotalGoods(infos) {
     });
 }
 
+
+// =====================
 // 商品篩選
 document.querySelectorAll(('[data-filter]')).forEach((item) => {
     item.addEventListener('click', (e) => {
@@ -65,6 +67,12 @@ document.querySelectorAll(('[data-filter]')).forEach((item) => {
 });
 
 
+// =====================
+// 將商品加入購物車
+
+
+
+// =====================
 // 取得購物車資料
 let totalChart,
     $chartList = document.querySelector('[data-chartList]');
@@ -76,7 +84,9 @@ function getTotalChart() {
             renderTotalChart(totalChart)
         });
 }
+getTotalChart();
 
+// 將購物車列表渲染到畫面
 function renderTotalChart(items) {
 
     items["carts"].forEach((product) => {
@@ -101,5 +111,3 @@ function renderTotalChart(items) {
         </li> `;
     })
 }
-
-getTotalChart();
