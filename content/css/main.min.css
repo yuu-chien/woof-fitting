@@ -304,23 +304,64 @@ iframe {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   max-width: 1110px;
-  padding: 60px 0;
   margin: 0 auto;
+  padding: 60px 0;
 }
 
 .o-btn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 100%;
+  width: auto;
+  min-width: 160px;
   height: 48px;
   padding: 10px;
-  text-align: center;
   color: #fff;
+  text-align: center;
   background-color: #000;
 }
 
 .o-btn:hover {
   background-color: #044534;
+}
+
+.o-btn--sm {
+  min-width: 100px;
+  height: 32px;
+  padding: 2px;
+}
+
+.o-btn--round {
+  border-radius: 4px;
+}
+
+.o-btn--outline {
+  color: #2a2a2a;
+  border: 1px solid #CED4DA;
+  background-color: transparent;
+}
+
+.o-btn--outline:hover {
+  color: #fff;
+  border-color: #2a2a2a;
+  background-color: #2a2a2a;
+}
+
+.l-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 16px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.l-actions__item {
+  margin-left: 12px;
+}
+
+.l-actions__item:first-child {
+  margin-left: 0;
 }
 
 .c-card {
@@ -383,9 +424,9 @@ iframe {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 0 -15px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 0 -15px;
 }
 
 .l-viewList__item {
@@ -414,8 +455,8 @@ iframe {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 48px 52px;
   height: 420px;
+  padding: 48px 52px;
   background: url(../images/kv.jpg) no-repeat center center;
   background-size: cover;
 }
@@ -427,8 +468,8 @@ iframe {
   height: 44px;
   padding: 6px;
   font-size: 20px;
-  text-align: center;
   color: #FFF;
+  text-align: center;
   background-color: #000;
 }
 /*# sourceMappingURL=main.min.css.map */
