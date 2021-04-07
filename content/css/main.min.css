@@ -305,11 +305,11 @@ iframe {
           box-sizing: border-box;
   max-width: 1110px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 60px 16px;
 }
 
 .l-container--gy {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .o-btn {
@@ -340,7 +340,7 @@ iframe {
 
 .o-btn--outline {
   color: #2a2a2a;
-  border: 1px solid #CED4DA;
+  border: 1px solid #ced4da;
   background-color: transparent;
 }
 
@@ -353,6 +353,7 @@ iframe {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 20px;
   margin-bottom: 16px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -365,6 +366,15 @@ iframe {
 
 .l-actions__item:first-child {
   margin-left: 0;
+}
+
+.l-actions--part {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .c-card {
@@ -516,7 +526,7 @@ input::-webkit-inner-spin-button {
 }
 
 .o-icon {
-  display: inline-block;
+  display: block;
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
@@ -528,6 +538,8 @@ input::-webkit-inner-spin-button {
 }
 
 .l-viewList {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,7 +549,10 @@ input::-webkit-inner-spin-button {
 }
 
 .l-viewList__item {
-  margin: 0 15px 28px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 7.5px;
+  margin-bottom: 28px;
 }
 
 .l-viewList__img {
@@ -558,6 +573,19 @@ input::-webkit-inner-spin-button {
   text-align: center;
 }
 
+@media only screen and (max-width: 1115px) {
+  .l-viewList {
+    margin: 0;
+  }
+  .l-viewList__item {
+    margin: 0px;
+    margin-bottom: 24px;
+  }
+  .l-viewList__img {
+    width: 100%;
+  }
+}
+
 .c-chartList__row {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -569,7 +597,7 @@ input::-webkit-inner-spin-button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid #BFBFBF;
+  border-bottom: 1px solid #bfbfbf;
 }
 
 .c-chartList__item {

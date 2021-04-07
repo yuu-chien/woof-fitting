@@ -1,11 +1,13 @@
 .l-viewList {
+    box-sizing: border-box;
     display: flex;
     margin: 0 -15px;
     flex-wrap: wrap;
 
     &__item {
-        margin: 0 15px 28px;
-        //margin-bottom: 28px;
+        box-sizing: border-box;
+        margin: 0 7.5px;
+        margin-bottom: 28px;
     }
 
     &__img {
@@ -24,12 +26,27 @@
         margin-top: 8px;
         text-align: center;
     }
+
+    @include breakpoint-pc {
+        margin: 0;
+
+        &__item {
+            margin: 0px;
+            margin-bottom: 24px;
+        }
+
+        &__img {
+            width: 100%;
+        }
+    }
 }
 
 .c-chartList {
-    &__head {}
+    &__head {
+    }
 
-    &__body {}
+    &__body {
+    }
 
     &__row {
         box-sizing: border-box;
@@ -37,7 +54,7 @@
         width: 100%;
         padding: 20px 40px 20px 0;
         align-items: center;
-        border-bottom: 1px solid #BFBFBF;
+        border-bottom: 1px solid #bfbfbf;
     }
 
     &__item {
