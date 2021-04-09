@@ -30,8 +30,19 @@
         display: flex;
         max-width: 1110px;
         margin: 0 auto;
-        padding: 24px 16px;
+        padding: 16px;
         justify-content: space-between;
         align-items: center;
     }
+
+    &--logo {
+    }
+
+    &--menu {
+    }
+}
+
+.c-logo {
+    font-family: "Train One";
+    font-size: 32px;
 }
