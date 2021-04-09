@@ -11,9 +11,32 @@
     </head>
 
     <body>
-        <section class="l-header"></section>
+        <section class="l-header">
+            <div class="l-header__cnt">
+                <div class="l-header__logo">
+                    <h1 class="c-logo">
+                        <span>WOLF FITTING</span>
+                    </h1>
+                </div>
+                <div class="l-header__menu">
+                    <ul class="c-menu">
+                        <li class="c-menu__item">
+                            <a href="">Interior Design</a>
+                        </li>
+                        <li class="c-menu__item">
+                            <a href="">Products</a>
+                        </li>
+                        <li class="c-menu__item">
+                            <a href="">
+                                <i class="o-icon o-icon--cart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
         <!-- kv -->
-        <section class="l-container">
+        <section class="l-container l-container--gy">
             <div class="l-container__cnt">
                 <div class="l-kv">
                     <div class="l-kv__cnt">
@@ -94,105 +117,111 @@
                 <ul class="l-viewList" data-goodsList></ul>
             </div>
         </section>
-        <!-- 我的購物車 -->
+        <!-- 我的購物車 / 填寫預訂資料 -->
         <div class="l-container l-container--gy">
-            <div class="l-container__cnt">
-                <div class="l-heading">
-                    <div class="o-title">Shopping cart</div>
-                </div>
-                <div class="c-chartList">
-                    <div class="c-chartList__head">
-                        <div class="c-chartList__row">
-                            <div class="c-chartList__item">Item</div>
-                            <div class="c-chartList__item">Unit price</div>
-                            <div class="c-chartList__item">Count</div>
-                            <div class="c-chartList__item">Total price</div>
-                        </div>
+            <div class="l-container__cnt l-container__cnt--h">
+                <div class="l-container__item">
+                    <div class="l-heading">
+                        <div class="o-title">Shopping cart</div>
                     </div>
-                    <ul class="c-chartList__body" data-chartList></ul>
-                </div>
-                <div class="l-actions l-actions--part">
-                    <div class="l-actions__item">
-                        <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyChart>
-                            <span>刪除所有品項</span>
-                        </a>
-                    </div>
-                    <div class="l-actions__item">
-                        <p>TOTAL</p>
-                        <p class="o-title">NT$ <span data-totalCost></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 填寫預訂資料 -->
-        <div class="l-container">
-            <div class="l-container__cnt">
-                <div class="l-heading">
-                    <div class="o-title">Purchase Order</div>
-                </div>
-                <div class="l-form">
-                    <div class="l-form__title">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="l-form__content">
-                        <div class="c-form">
-                            <div class="c-form__content">
-                                <input id="name" name="name" class="o-inputBox" type="text" placeholder="Please type your name" />
+                    <div class="c-chartList">
+                        <div class="c-chartList__head">
+                            <div class="c-chartList__row">
+                                <div class="c-chartList__item">Item</div>
+                                <div class="c-chartList__item">Unit price</div>
+                                <div class="c-chartList__item">Count</div>
+                                <div class="c-chartList__item">Total price</div>
                             </div>
                         </div>
+                        <ul class="c-chartList__body" data-chartList></ul>
                     </div>
-                </div>
-                <div class="l-form">
-                    <div class="l-form__title">
-                        <label for="name">Phone</label>
-                    </div>
-                    <div class="l-form__content">
-                        <div class="c-form">
-                            <div class="c-form__content">
-                                <input id="phone" name="phone" class="o-inputBox" type="number" placeholder="Please type your phone" />
-                            </div>
+                    <div class="l-actions l-actions--part">
+                        <div class="l-actions__item">
+                            <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyChart>
+                                <span>刪除所有品項</span>
+                            </a>
+                        </div>
+                        <div class="l-actions__item">
+                            <p>TOTAL</p>
+                            <p class="o-title">NT$ <span data-totalCost></span></p>
                         </div>
                     </div>
                 </div>
-                <div class="l-form">
-                    <div class="l-form__title">
-                        <label for="name">Email</label>
+                <div class="l-container__item">
+                    <div class="l-heading">
+                        <div class="o-title">Purchase Order</div>
                     </div>
-                    <div class="l-form__content">
-                        <div class="c-form">
-                            <div class="c-form__content">
-                                <input id="email" name="email" class="o-inputBox" type="text" placeholder="Please type your email" />
-                            </div>
+                    <div class="l-form">
+                        <div class="l-form__title">
+                            <label for="name">Name</label>
                         </div>
-                    </div>
-                </div>
-                <div class="l-form">
-                    <div class="l-form__title">
-                        <label for="name">Address</label>
-                    </div>
-                    <div class="l-form__content">
-                        <div class="c-form">
-                            <div class="c-form__content">
-                                <input id="address" name="address" class="o-inputBox" type="text" placeholder="Please type your address" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="l-form">
-                    <div class="l-form__title">
-                        <label for="name">Payment</label>
-                    </div>
-                    <div class="l-form__content">
-                        <div class="c-form">
-                            <div class="c-form__content">
-                                <div class="o-selectBox">
-                                    <select id="payment" name="payment" class="o-selectBox__input">
-                                        <option value="atm">ATM</option>
-                                        <option value="bank transfer">Bank Transfer</option>
-                                        <option value="credit card">Credit Card</option>
-                                    </select>
+                        <div class="l-form__content">
+                            <div class="c-form">
+                                <div class="c-form__content">
+                                    <input id="name" name="name" class="o-inputBox" type="text" placeholder="Please type your name" />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="l-form">
+                        <div class="l-form__title">
+                            <label for="name">Phone</label>
+                        </div>
+                        <div class="l-form__content">
+                            <div class="c-form">
+                                <div class="c-form__content">
+                                    <input id="phone" name="phone" class="o-inputBox" type="number" placeholder="Please type your phone" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l-form">
+                        <div class="l-form__title">
+                            <label for="name">Email</label>
+                        </div>
+                        <div class="l-form__content">
+                            <div class="c-form">
+                                <div class="c-form__content">
+                                    <input id="email" name="email" class="o-inputBox" type="text" placeholder="Please type your email" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l-form">
+                        <div class="l-form__title">
+                            <label for="name">Address</label>
+                        </div>
+                        <div class="l-form__content">
+                            <div class="c-form">
+                                <div class="c-form__content">
+                                    <input id="address" name="address" class="o-inputBox" type="text" placeholder="Please type your address" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l-form">
+                        <div class="l-form__title">
+                            <label for="name">Payment</label>
+                        </div>
+                        <div class="l-form__content">
+                            <div class="c-form">
+                                <div class="c-form__content">
+                                    <div class="o-selectBox">
+                                        <select id="payment" name="payment" class="o-selectBox__input">
+                                            <option value="atm">ATM</option>
+                                            <option value="bank transfer">Bank Transfer</option>
+                                            <option value="credit card">Credit Card</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="l-actions">
+                        <div class="l-actions__item">
+                            <a href="#" class="o-btn o-btn--round">
+                                <span>Order Now !</span>
+                            </a>
                         </div>
                     </div>
                 </div>

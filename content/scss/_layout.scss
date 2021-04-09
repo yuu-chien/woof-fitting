@@ -4,9 +4,34 @@
         max-width: 1110px;
         margin: 0 auto;
         padding: 60px 16px;
+
+        &--h {
+            display: flex;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        & + & {
+            margin-left: 120px;
+        }
     }
 
     &--gy {
         background-color: #f8f8f8;
+    }
+}
+
+.l-header {
+    border-bottom: 20px solid #2e2e2e;
+
+    &__cnt {
+        box-sizing: border-box;
+        display: flex;
+        max-width: 1110px;
+        margin: 0 auto;
+        padding: 24px 16px;
+        justify-content: space-between;
+        align-items: center;
     }
 }

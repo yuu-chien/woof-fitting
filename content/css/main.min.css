@@ -308,8 +308,43 @@ iframe {
   padding: 60px 16px;
 }
 
+.l-container__cnt--h {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.l-container__item {
+  width: 100%;
+}
+
+.l-container__item + .l-container__item {
+  margin-left: 120px;
+}
+
 .l-container--gy {
   background-color: #f8f8f8;
+}
+
+.l-header {
+  border-bottom: 20px solid #2e2e2e;
+}
+
+.l-header__cnt {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .o-btn {
@@ -537,6 +572,10 @@ input::-webkit-inner-spin-button {
   background: url(../images/icon/clear.svg);
 }
 
+.o-icon--cart {
+  background: url(../images/icon/cart.svg);
+}
+
 .l-viewList {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -546,6 +585,9 @@ input::-webkit-inner-spin-button {
   margin: 0 -15px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .l-viewList__item {
@@ -621,11 +663,28 @@ input::-webkit-inner-spin-button {
      object-fit: cover;
 }
 
+.c-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-menu__item {
+  margin-left: 48px;
+}
+
+.c-menu__item:first-child {
+  margin-left: 0;
+}
+
 .l-kv__cnt {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  height: 420px;
+  height: 520px;
   padding: 48px 52px;
   background: url(../images/kv.jpg) no-repeat center center;
   background-size: cover;
@@ -638,7 +697,7 @@ input::-webkit-inner-spin-button {
   height: 44px;
   padding: 6px;
   font-size: 20px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   background-color: #000;
 }
