@@ -67,7 +67,7 @@ document.querySelectorAll("[data-filter]").forEach((item) => {
 // ================================
 // 取得購物車資料
 let totalChart,
-    $chartList = document.querySelector("[data-chartList]"),
+    $cartList = document.querySelector("[data-cartList]"),
     $totalCost = document.querySelector("[data-totalCost]");
 
 // 取得購物車資料：get API
@@ -83,27 +83,26 @@ getTotalChart();
 // 將購物車列表渲染到畫面
 // todo 商品加入購物車後正確的數量
 function renderTotalChart(items) {
-    $chartList.innerHTML = "";
+    $cartList.innerHTML = "";
     items["carts"].forEach((product) => {
-        $chartList.innerHTML += `
-        <li class="c-chartList__row">
-            <div class="c-chartList__img">
-                <img src="${product.product.images}" alt="${product.product.title}">
-            </div>
-            <div class="c-chartList__item">${product.product.title}</div>
-            <div class="c-chartList__item">
-                <div class="o-title o-title--md o-title--normal">NT$ <span>${product.product.price}</span></div>
-            </div>
-            <div class="c-chartList__item">${product.quantity}</div>
-            <div class="c-chartList__item">
-                <div class="o-title o-title--md o-title--normal">NT$ <span>${product.product.price * product.quantity}</span></div>
-            </div>
-            <div class="c-chartList__ico">
+        $cartList.innerHTML += `
+        <tr>
+            <td class="c-table__td c-table__td--h">
+                <div class="o-cartImg">
+                    <img src="${product.product.images}" alt="${product.product.title}" />
+                </div>
+                <div>${product.product.title}</div>
+            </td>
+            <td class="c-table__td">${product.product.price}</td>
+            <td class="c-table__td u-tac">${product.quantity}</td>
+            <td class="c-table__td">${product.product.price * product.quantity}</td>
+            <td class="c-table__td">
                 <a href="#" data-chartId="${product.id}">
                     <i class="o-icon o-icon--clear"></i>
                 </a>
-            </div>
-        </li> `;
+            </td>
+        </tr>
+         `;
     });
     // 顯示訂單總金額
     $totalCost.textContent = items.finalTotal;
@@ -155,4 +154,42 @@ document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
         console.log("刪除全部成功", res);
         renderTotalChart(res.data);
     });
+});
+
+// 送出訂單前填寫資訊
+document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
+    e.preventDefault();
+    let orderName = document.querySelector("#order-name").value,
+        orderPhone = document.querySelector("#order-phone").value,
+        orderEmail = document.querySelector("#order-email").value,
+        orderAddress = document.querySelector("#order-address").value,
+        orderPayment = document.querySelector("#order-payment").value;
+
+    let orderInfo = {
+        data: {
+            user: {
+                name: "",
+                tel: "",
+                email: "",
+                address: "",
+                payment: "",
+            },
+        },
+    };
+
+    orderInfo.data.user.name = orderName;
+    orderInfo.data.user.tel = orderPhone;
+    orderInfo.data.user.email = orderEmail;
+    orderInfo.data.user.address = orderAddress;
+    orderInfo.data.user.payment = orderPayment;
+
+    axios
+        .post(`${api_path}/orders`, orderInfo)
+        .then((res) => {
+            console.log("送出訂單", res);
+        })
+        .catch((err) => {
+            console.log(err);
+            document.querySelector("[data-sentOrder-hint]").classList.add("is-show");
+        });
 });
