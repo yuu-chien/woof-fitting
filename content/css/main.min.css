@@ -319,7 +319,7 @@ iframe {
 }
 
 .l-container__item + .l-container__item {
-  margin-left: 120px;
+  margin-left: 100px;
 }
 
 .l-container--gy {
@@ -406,6 +406,27 @@ iframe {
 
 .l-actions__item:first-child {
   margin-left: 0;
+}
+
+.l-actions__hint {
+  display: none;
+  margin-top: 8px;
+  font-size: 12px;
+  color: salmon;
+}
+
+.l-actions__hint.is-show {
+  display: block;
+}
+
+.l-actions--v {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .l-actions--part {
@@ -633,41 +654,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-.c-chartList__row {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  padding: 20px 40px 20px 0;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-bottom: 1px solid #bfbfbf;
-}
-
-.c-chartList__item {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 160px;
-  padding: 0 15px;
-}
-
-.c-chartList__img {
-  width: 80px;
-  height: 80px;
-  overflow: hidden;
-}
-
-.c-chartList__img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 .c-menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -678,7 +664,7 @@ input::-webkit-inner-spin-button {
 }
 
 .c-menu__item {
-  margin-left: 48px;
+  margin-left: 36px;
 }
 
 .c-menu__item:first-child {
@@ -705,5 +691,46 @@ input::-webkit-inner-spin-button {
   color: #fff;
   text-align: center;
   background-color: #000;
+}
+
+.o-cartImg {
+  width: 60px;
+  height: 60px;
+  margin-right: 8px;
+  overflow: hidden;
+}
+
+.o-cartImg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.c-table {
+  width: 100%;
+}
+
+.c-table__th {
+  padding: 12px 0;
+  font-weight: bold;
+}
+
+.c-table__td {
+  padding: 8px 0;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.c-table__td--h {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.u-tac {
+  text-align: center;
 }
 /*# sourceMappingURL=main.min.css.map */

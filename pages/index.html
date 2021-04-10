@@ -127,7 +127,7 @@
                     <div class="l-heading">
                         <div class="o-title">Shopping cart</div>
                     </div>
-                    <div class="c-chartList">
+                    <!-- <div class="c-chartList">
                         <div class="c-chartList__head">
                             <div class="c-chartList__row">
                                 <div class="c-chartList__item">Item</div>
@@ -136,8 +136,56 @@
                                 <div class="c-chartList__item">Total price</div>
                             </div>
                         </div>
-                        <ul class="c-chartList__body" data-chartList></ul>
-                    </div>
+                        <ul class="c-chartList__body" data-chartList>
+                            <li class="c-cartList__row">
+                                <div class="c-cartList__img">
+                                    <img src="${product.product.images}" alt="${product.product.title}">
+                                </div>
+                                <div class="c-cartList__item">${product.product.title}</div>
+                                <div class="c-cartList__item">
+                                    <div class="o-title o-title--md o-title--normal">NT$ <span>${product.product.price}</span></div>
+                                </div>
+                                <div class="c-cartList__item">${product.quantity}</div>
+                                <div class="c-cartList__item">
+                                    <div class="o-title o-title--md o-title--normal">NT$ <span>${product.product.price * product.quantity}</span></div>
+                                </div>
+                                <div class="c-cartList__ico">
+                                    <a href="#" data-chartId="${product.id}">
+                                        <i class="o-icon o-icon--clear"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <table class="c-table">
+                        <thead>
+                            <tr>
+                                <th class="c-table__th">Item</th>
+                                <th class="c-table__th"></th>
+                                <th class="c-table__th u-tac">Count</th>
+                                <th class="c-table__th u-tac">Total</th>
+                                <th class="c-table__th"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-cartList>
+                            <!-- <tr class="c-table__tr">
+                                <td class="c-table__td c-table__td--h">
+                                    <div class="o-cartImg">
+                                        <img src="" alt="" />
+                                    </div>
+                                    <div>Antony 雙人床架／雙人加大</div>
+                                </td>
+                                <td class="c-table__td">12,000</td>
+                                <td class="c-table__td">1</td>
+                                <td class="c-table__td">12,000</td>
+                                <td class="c-table__td">
+                                    <a href="#" data-chartId="${product.id}">
+                                        <i class="o-icon o-icon--clear"></i>
+                                    </a>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
                     <div class="l-actions l-actions--part">
                         <div class="l-actions__item">
                             <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyChart>
@@ -161,7 +209,7 @@
                         <div class="l-form__content">
                             <div class="c-form">
                                 <div class="c-form__content">
-                                    <input id="name" name="name" class="o-inputBox" type="text" placeholder="Please type your name" />
+                                    <input id="order-name" name="name" class="o-inputBox" type="text" placeholder="Please type your name" />
                                 </div>
                             </div>
                         </div>
@@ -173,7 +221,7 @@
                         <div class="l-form__content">
                             <div class="c-form">
                                 <div class="c-form__content">
-                                    <input id="phone" name="phone" class="o-inputBox" type="number" placeholder="Please type your phone" />
+                                    <input id="order-phone" name="phone" class="o-inputBox" type="number" placeholder="Please type your phone" />
                                 </div>
                             </div>
                         </div>
@@ -185,7 +233,7 @@
                         <div class="l-form__content">
                             <div class="c-form">
                                 <div class="c-form__content">
-                                    <input id="email" name="email" class="o-inputBox" type="text" placeholder="Please type your email" />
+                                    <input id="order-email" name="email" class="o-inputBox" type="email" placeholder="Please type your email" />
                                 </div>
                             </div>
                         </div>
@@ -197,7 +245,7 @@
                         <div class="l-form__content">
                             <div class="c-form">
                                 <div class="c-form__content">
-                                    <input id="address" name="address" class="o-inputBox" type="text" placeholder="Please type your address" />
+                                    <input id="order-address" name="address" class="o-inputBox" type="text" placeholder="Please type your address" />
                                 </div>
                             </div>
                         </div>
@@ -210,7 +258,7 @@
                             <div class="c-form">
                                 <div class="c-form__content">
                                     <div class="o-selectBox">
-                                        <select id="payment" name="payment" class="o-selectBox__input">
+                                        <select id="order-payment" name="payment" class="o-selectBox__input">
                                             <option value="atm">ATM</option>
                                             <option value="bank transfer">Bank Transfer</option>
                                             <option value="credit card">Credit Card</option>
@@ -220,12 +268,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="l-actions">
+                    <div class="l-actions l-actions--v">
                         <div class="l-actions__item">
-                            <a href="#" class="o-btn o-btn--round">
+                            <a href="#" class="o-btn o-btn--round" data-sentOrder>
                                 <span>Order Now !</span>
                             </a>
                         </div>
+                        <div class="l-actions__hint" data-sentOrder-hint>Please confirm whether the purchase order information is correct.</div>
                     </div>
                 </div>
             </div>
