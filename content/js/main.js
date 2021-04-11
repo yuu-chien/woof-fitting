@@ -187,6 +187,17 @@ document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
         .post(`${api_path}/orders`, orderInfo)
         .then((res) => {
             console.log("送出訂單", res);
+            orderInfo = {
+                data: {
+                    user: {
+                        name: "",
+                        tel: "",
+                        email: "",
+                        address: "",
+                        payment: "",
+                    },
+                },
+            };
         })
         .catch((err) => {
             console.log(err);
