@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../content/css/main.min.css" />
+        <title>Wolf Fitting．Backend</title>
+    </head>
+    <body>
+        <section class="l-header">
+            <div class="l-header__cnt">
+                <div class="l-header__logo">
+                    <h1 class="c-logo">
+                        <span>WOLF FITTING</span>
+                    </h1>
+                </div>
+                <div class="l-header__menu">
+                    <ul class="c-menu">
+                        <li class="c-menu__item">
+                            <a href="#">Backend</a>
+                        </li>
+                        <li class="c-menu__item">
+                            <a href="#">Admin Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="l-container">
+            <div class="l-container__cnt">
+                <div class="l-heading">
+                    <div class="o-title">Products Chart</div>
+                </div>
+            </div>
+        </section>
+        <section class="l-container l-container--gy">
+            <div class="l-container__cnt">
+                <div class="l-heading">
+                    <div class="o-title">All Orders</div>
+                </div>
+                <table class="c-table u-tal">
+                    <thead>
+                        <tr>
+                            <th class="c-table__th">Name</th>
+                            <th class="c-table__th">Items</th>
+                            <th class="c-table__th">Payment</th>
+                            <th class="c-table__th">State</th>
+                            <th class="c-table__th">Total</th>
+                            <th class="c-table__th u-tac"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-ordersList>
+                        <!-- <tr>
+                            <td class="c-table__td">10088377474</td>
+                            <td class="c-table__td">
+                                <div>小杰</div>
+                                <div>0912345678</div>
+                            </td>
+                            <td class="c-table__td">高雄市前鎮區六合路183巷66號</td>
+                            <td class="c-table__td">cccexample@gmail.com</td>
+                            <td class="c-table__td">Louvre 雙人床架</td>
+                            <td class="c-table__td">已處理</td>
+                            <td class="c-table__td">2021/03/08</td>
+                            <td class="c-table__td">
+                                <a href="#">
+                                    <i class="o-icon o-icon--clear"></i>
+                                </a>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <div class="l-actions l-actions--part">
+                    <div class="l-actions__item">
+                        <a href="" class="o-btn o-btn--round o-btn--outline">刪除全部訂單 </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../content/js/backend.js"></script>
+</html>

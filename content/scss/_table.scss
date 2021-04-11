@@ -1,13 +1,16 @@
 .c-table {
     width: 100%;
+
     &__th {
         padding: 12px 0;
         font-weight: bold;
     }
 
     &__td {
-        padding: 8px 0;
-        border-bottom: 1px solid #bfbfbf;
+        box-sizing: border-box;
+        padding: 8px 4px;
+        word-break: break-all;
+        border: 1px solid #bfbfbf;
 
         &--h {
             display: flex;

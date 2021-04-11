@@ -717,8 +717,11 @@ input::-webkit-inner-spin-button {
 }
 
 .c-table__td {
-  padding: 8px 0;
-  border-bottom: 1px solid #bfbfbf;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 8px 4px;
+  word-break: break-all;
+  border: 1px solid #bfbfbf;
 }
 
 .c-table__td--h {
@@ -732,5 +735,9 @@ input::-webkit-inner-spin-button {
 
 .u-tac {
   text-align: center;
+}
+
+.u-tal {
+  text-align-last: left;
 }
 /*# sourceMappingURL=main.min.css.map */
