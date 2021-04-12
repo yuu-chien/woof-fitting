@@ -14,6 +14,7 @@ function getAllOrder() {
         .then((res) => {
             totalOrders = res.data.orders;
             renderTotalOrders(totalOrders);
+            renderChart(totalOrders);
         });
 }
 getAllOrder();
@@ -32,7 +33,7 @@ function renderTotalOrders(infos) {
             <td class="c-table__td">${order.user.name}</td>
             <td class="c-table__td">${orderDetails}</td>
             <td class="c-table__td">${order.user.payment}</td>
-            <td class="c-table__td">${order.user.paid}</td>
+            <td class="c-table__td">${order.paid}</td>
             <td class="c-table__td">${order.total}</td>
             <td class="c-table__td">
                 <a href="#" data-delOrder="${order.id}">
@@ -81,3 +82,20 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
             renderTotalOrders(res.data.orders);
         });
 });
+
+// =============
+// C3
+
+function renderChart(totalOrders) {
+    //console.log(totalOrders);
+    // let a = totalOrders.forEach((item) => {
+    //     console.log(item.products.category);
+    // });
+    let arr = [];
+    for (let i = 0; i < totalOrders.length; i++) {
+        //console.log(totalOrders[i].products);
+
+        arr.push(totalOrders[i].products[i]);
+        console.log(arr);
+    }
+}

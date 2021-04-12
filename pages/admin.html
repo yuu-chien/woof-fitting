@@ -7,6 +7,8 @@
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet" />
+        <!-- C3 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.css" />
         <link rel="stylesheet" href="../content/css/main.min.css" />
         <title>Wolf Fitting．Backend</title>
     </head>
@@ -35,6 +37,7 @@
                 <div class="l-heading">
                     <div class="o-title">Products Chart</div>
                 </div>
+                <div class="c-chart"></div>
             </div>
         </section>
         <section class="l-container l-container--gy">
@@ -53,34 +56,18 @@
                             <th class="c-table__th u-tac"></th>
                         </tr>
                     </thead>
-                    <tbody data-ordersList>
-                        <!-- <tr>
-                            <td class="c-table__td">10088377474</td>
-                            <td class="c-table__td">
-                                <div>小杰</div>
-                                <div>0912345678</div>
-                            </td>
-                            <td class="c-table__td">高雄市前鎮區六合路183巷66號</td>
-                            <td class="c-table__td">cccexample@gmail.com</td>
-                            <td class="c-table__td">Louvre 雙人床架</td>
-                            <td class="c-table__td">已處理</td>
-                            <td class="c-table__td">2021/03/08</td>
-                            <td class="c-table__td">
-                                <a href="#">
-                                    <i class="o-icon o-icon--clear"></i>
-                                </a>
-                            </td>
-                        </tr> -->
-                    </tbody>
+                    <tbody data-ordersList></tbody>
                 </table>
                 <div class="l-actions l-actions--part">
                     <div class="l-actions__item">
-                        <a href="" class="o-btn o-btn--round o-btn--outline">刪除全部訂單 </a>
+                        <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyOrders>刪除全部訂單</a>
                     </div>
                 </div>
             </div>
         </section>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
     <script src="../content/js/backend.js"></script>
 </html>
