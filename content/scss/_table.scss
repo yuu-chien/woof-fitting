@@ -8,9 +8,9 @@
 
     &__td {
         box-sizing: border-box;
-        padding: 8px 4px;
+        padding: 8px 2px;
         word-break: break-all;
-        border: 1px solid #bfbfbf;
+        border-bottom: 1px solid #bfbfbf;
 
         &--h {
             display: flex;

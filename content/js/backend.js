@@ -13,8 +13,8 @@ function getAllOrder() {
         })
         .then((res) => {
             totalOrders = res.data.orders;
-            renderTotalOrders(totalOrders);
             renderChart(totalOrders);
+            renderTotalOrders(totalOrders);
         });
 }
 getAllOrder();
@@ -87,15 +87,58 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
 // C3
 
 function renderChart(totalOrders) {
-    //console.log(totalOrders);
-    // let a = totalOrders.forEach((item) => {
-    //     console.log(item.products.category);
-    // });
-    let arr = [];
-    for (let i = 0; i < totalOrders.length; i++) {
-        //console.log(totalOrders[i].products);
 
-        arr.push(totalOrders[i].products[i]);
-        console.log(arr);
-    }
+    console.log("totalOrders", totalOrders);
+    let categories = {};
+
+    // let a = totalOrders.filter((item) => {
+    //     console.log(item.products)
+
+    //     item.products.forEach((i) => {
+
+    //         if (i.category == undefined) {
+    //             arr[i.category] = 1;
+    //             console.log("arrNO", arr);
+    //         } else {
+    //             arr[i.category] += 1;
+    //             console.log("arr", arr);
+    //         }
+
+    //     })
+
+    // });
+
+    let areaAry;
+    totalOrders.forEach((item) => {
+
+        //console.log(item.products);
+
+        item.products.forEach((i) => {
+
+            if (categories[i.category] == undefined) {
+                categories[i.category] = 1;
+            } else {
+                categories[i.category] += 1;
+            }
+        })
+
+        areaAry = Object.keys(categories);
+
+        console.log("categories", categories);
+        console.log("areaAry", areaAry);
+    });
+
+    c3.generate({
+        bindto: ".c-chart",
+        data: {
+            json: [categories],
+            keys: {
+                value: areaAry,
+            },
+            type: 'donut'
+        }
+    });
+
+
+
 }
