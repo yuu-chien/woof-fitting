@@ -22,6 +22,10 @@
 .l-heading {
     margin-bottom: 32px;
     text-align: center;
+
+    &--left {
+        text-align-last: left;
+    }
 }
 
 .c-txtPile {

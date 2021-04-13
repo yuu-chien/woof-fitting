@@ -3,7 +3,7 @@
         box-sizing: border-box;
         max-width: 1110px;
         margin: 0 auto;
-        padding: 60px 16px;
+        padding: 60px 20px;
 
         &--h {
             display: flex;
@@ -20,10 +20,24 @@
     &--gy {
         background-color: #f8f8f8;
     }
+
+    @include breakpoint-pc {
+        &__cnt {
+            &--h {
+                flex-direction: column;
+            }
+        }
+        &__item {
+            width: 100%;
+            & + & {
+                margin-left: 0;
+            }
+        }
+    }
 }
 
 .l-header {
-    border-bottom: 20px solid #2e2e2e;
+    border-bottom: 16px solid #2e2e2e;
 
     &__cnt {
         box-sizing: border-box;

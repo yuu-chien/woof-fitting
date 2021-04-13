@@ -15,17 +15,25 @@
         }
     }
 
-    &__btn {}
+    &__btn {
+    }
 
     &__tit {
         padding: 8px 0;
     }
 
-    &__bottom {}
+    &__bottom {
+    }
 
     &__tag {
         position: absolute;
         top: 8px;
         right: -4px;
+    }
+
+    @include breakpoint-table {
+        &__img {
+            height: 240px;
+        }
     }
 }

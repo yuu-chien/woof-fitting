@@ -3,6 +3,11 @@
         @content;
     }
 }
+@mixin breakpoint-table() {
+    @media only screen and (max-width: 768px) {
+        @content;
+    }
+}
 
 // * {
 //     outline: 1px solid saddlebrown;

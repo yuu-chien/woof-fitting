@@ -2,10 +2,33 @@
     &__cnt {
         box-sizing: border-box;
         width: 100%;
-        height: 520px;
+        height: 480px;
         padding: 48px 52px;
         background: url(../images/kv.jpg) no-repeat center center;
         background-size: cover;
+        background-attachment: fixed;
+    }
+    @include breakpoint-pc {
+        &__cnt {
+            height: 400px;
+        }
+    }
+}
+
+.l-filter {
+    display: flex;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &__item {
+        margin-right: 16px;
+    }
+
+    @include breakpoint-pc {
+        &__item {
+            margin-bottom: 8px;
+        }
     }
 }
 
@@ -30,5 +53,43 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+.c-step {
+    &__sign {
+        position: relative;
+        box-sizing: border-box;
+        width: 114px;
+        height: 114px;
+        border-radius: 50%;
+        border: 3px solid #212529;
+
+        & > img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 48px;
+            height: 48px;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &__tit {
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    @include breakpoint-table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__tit {
+            width: 100px;
+            margin-top: 0;
+            margin-left: 16px;
+            text-align-last: left;
+        }
     }
 }
