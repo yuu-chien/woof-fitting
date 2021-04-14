@@ -1,9 +1,25 @@
 const api_path = "https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ch.yu";
 
+// loading
+function loading_start() {
+    $('body').loading({
+        stoppable: true,
+        theme: 'dark',
+        message: 'LOADING...',
+    });
+}
+
+function loading_stop() {
+    $('body').loading("stop");
+}
+
+
 // ================================
 // 取得所有產品列表
 let totalGoods,
-    $goodsList = document.querySelector("[data-goodsList]");
+    $goodsList = document.querySelector("[data-goodsList]"),
+    $cartTable = document.querySelector("[data-cart-table]"),
+    $cartHint = document.querySelector("[data-cart-hint]");
 
 // 取得所有產品列表：get API
 function getTotalGoods() {
@@ -12,7 +28,6 @@ function getTotalGoods() {
         renderTotalGoods(totalGoods);
     });
 }
-getTotalGoods();
 
 // 將產品列表渲染到畫面
 function renderTotalGoods(infos) {
@@ -44,6 +59,7 @@ function renderTotalGoods(infos) {
     });
     // 在「加入購物車」按鈕綁上新增商品到購物車事件
     addToChart();
+    loading_stop();
 }
 
 // ================================
@@ -74,15 +90,22 @@ let totalChart,
 function getTotalChart() {
     axios.get(`${api_path}/carts`).then((res) => {
         totalChart = res.data;
-        console.log("totalChart", totalChart);
         renderTotalChart(totalChart);
     });
 }
-getTotalChart();
 
 // 將購物車列表渲染到畫面
 // todo 商品加入購物車後正確的數量
 function renderTotalChart(items) {
+
+    // 若購物車內無商品則顯示提示，有商品則顯示列表
+    if (items.carts.length === 0) {
+        $cartTable.classList.add("u-hidden");
+        $cartHint.classList.remove("u-hidden");
+    } else {
+        $cartTable.classList.remove("u-hidden");
+        $cartHint.classList.add("u-hidden");
+    }
     $cartList.innerHTML = "";
     items["carts"].forEach((product) => {
         $cartList.innerHTML += `
@@ -107,16 +130,19 @@ function renderTotalChart(items) {
     // 顯示訂單總金額
     $totalCost.textContent = items.finalTotal;
     delSingleProduct();
+    loading_stop();
 }
 
 // ================================
 // 將商品加入購物車 + post API
 function addToChart() {
+    $cartTable.classList.remove("u-hidden");
+    $cartHint.classList.add("u-hidden");
     document.querySelectorAll("[data-addChart]").forEach((addToChartBtn) => {
         addToChartBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            loading_start();
             let productId = addToChartBtn.getAttribute("data-addChart");
-            // console.log("productId", productId);
             axios
                 .post(`${api_path}/carts`, {
                     data: {
@@ -130,6 +156,7 @@ function addToChart() {
                 });
         });
     });
+
 }
 
 // ================================
@@ -138,32 +165,39 @@ function delSingleProduct() {
     document.querySelectorAll("[data-chartId]").forEach((delChartItemBtn) => {
         delChartItemBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            loading_start();
             let chartItemId = delChartItemBtn.getAttribute("data-chartId");
             axios.delete(`${api_path}/carts/${chartItemId}`).then((res) => {
-                console.log("刪除成功", res);
+                // console.log("刪除成功", res);
                 renderTotalChart(res.data);
             });
         });
     });
 }
 
-// 刪除購物車內的單筆商品+ delete API
+
+// 刪除購物車內的全部商品+ delete API
 document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
     e.preventDefault();
+    loading_start();
     axios.delete(`${api_path}/carts`).then((res) => {
-        console.log("刪除全部成功", res);
+        // console.log("刪除全部成功", res);
+        $cartTable.classList.add("u-hidden");
+        $cartHint.classList.remove("u-hidden");
         renderTotalChart(res.data);
     });
 });
 
-// 送出訂單前填寫資訊
+// 送出訂單
 document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
     e.preventDefault();
-    let orderName = document.querySelector("#order-name").value,
-        orderPhone = document.querySelector("#order-phone").value,
-        orderEmail = document.querySelector("#order-email").value,
-        orderAddress = document.querySelector("#order-address").value,
-        orderPayment = document.querySelector("#order-payment").value;
+    loading_start();
+
+    let $orderName = document.querySelector("#order-name"),
+        $orderPhone = document.querySelector("#order-phone"),
+        $orderEmail = document.querySelector("#order-email"),
+        $orderAddress = document.querySelector("#order-address"),
+        $orderPayment = document.querySelector("#order-payment");
 
     let orderInfo = {
         data: {
@@ -177,16 +211,16 @@ document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
         },
     };
 
-    orderInfo.data.user.name = orderName;
-    orderInfo.data.user.tel = orderPhone;
-    orderInfo.data.user.email = orderEmail;
-    orderInfo.data.user.address = orderAddress;
-    orderInfo.data.user.payment = orderPayment;
+    orderInfo.data.user.name = $orderName.value;
+    orderInfo.data.user.tel = $orderPhone.value;
+    orderInfo.data.user.email = $orderEmail.value;
+    orderInfo.data.user.address = $orderAddress.value;
+    orderInfo.data.user.payment = $orderPayment.value;
 
     axios
         .post(`${api_path}/orders`, orderInfo)
         .then((res) => {
-            console.log("送出訂單", res);
+            //console.log("送出訂單", res);
             orderInfo = {
                 data: {
                     user: {
@@ -198,9 +232,28 @@ document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
                     },
                 },
             };
+            $cartList.innerHTML = "";
+            $totalCost.textContent = 0;
+            $cartTable.classList.add("u-hidden");
+            $cartHint.classList.remove("u-hidden");
+            $orderName.value = "";
+            $orderPhone.value = "";
+            $orderEmail.value = "";
+            $orderAddress.value = "";
+            $orderPayment.value = "";
+            loading_stop();
         })
         .catch((err) => {
-            console.log(err);
+            loading_stop();
             document.querySelector("[data-sentOrder-hint]").classList.add("is-show");
         });
 });
+
+
+// 初始化
+function init() {
+    loading_start();    // 啟動 loading 動畫
+    getTotalGoods();    // 取得所有產品列表
+    getTotalChart();    // 取得購物車列表
+}
+init();
