@@ -1,6 +1,23 @@
 const api_admin_path = "https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/ch.yu";
 const uid = "1bbgXGk3kMgjWsJg2zzJjJ7jJxA3";
 
+// loading
+function loading_start() {
+    $('body').loading({
+        stoppable: true,
+        theme: 'dark',
+        message: 'WORKING...',
+    });
+}
+
+function loading_stop() {
+    $('body').loading("stop");
+}
+
+loading_start();
+
+
+
 let totalOrders,
     $ordersList = document.querySelector("[data-ordersList]");
 
@@ -36,13 +53,14 @@ function renderTotalOrders(infos) {
             <td class="c-table__td">${order.paid}</td>
             <td class="c-table__td">${order.total}</td>
             <td class="c-table__td">
-                <a href="#" data-delOrder="${order.id}">
+                <a href="" data-delOrder="${order.id}">
                     <i class="o-icon o-icon--clear"></i>
                 </a>
             </td>
         </tr>`;
         // 綁上刪除特定訂單事件
         delOrder();
+        loading_stop();
     });
 }
 
@@ -88,30 +106,9 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
 
 function renderChart(totalOrders) {
 
-    console.log("totalOrders", totalOrders);
     let categories = {};
-
-    // let a = totalOrders.filter((item) => {
-    //     console.log(item.products)
-
-    //     item.products.forEach((i) => {
-
-    //         if (i.category == undefined) {
-    //             arr[i.category] = 1;
-    //             console.log("arrNO", arr);
-    //         } else {
-    //             arr[i.category] += 1;
-    //             console.log("arr", arr);
-    //         }
-
-    //     })
-
-    // });
-
     let areaAry;
     totalOrders.forEach((item) => {
-
-        //console.log(item.products);
 
         item.products.forEach((i) => {
 
@@ -124,8 +121,6 @@ function renderChart(totalOrders) {
 
         areaAry = Object.keys(categories);
 
-        console.log("categories", categories);
-        console.log("areaAry", areaAry);
     });
 
     c3.generate({
@@ -138,7 +133,5 @@ function renderChart(totalOrders) {
             type: 'donut'
         }
     });
-
-
 
 }
