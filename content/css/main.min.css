@@ -598,6 +598,10 @@ input::-webkit-inner-spin-button {
   font-weight: normal;
 }
 
+.o-title--gy {
+  color: #ced4da;
+}
+
 .o-title--wh {
   color: #fff;
 }
@@ -875,5 +879,9 @@ input::-webkit-inner-spin-button {
 
 .u-tal {
   text-align-last: left;
+}
+
+.u-hidden {
+  display: none;
 }
 /*# sourceMappingURL=main.min.css.map */
