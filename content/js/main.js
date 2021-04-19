@@ -16,17 +16,21 @@ function loading_stop() {
 
 // ================================
 // 取得所有產品列表
-let totalGoods,
-    $goodsList = document.querySelector("[data-goodsList]"),
-    $cartTable = document.querySelector("[data-cart-table]"),
-    $cartHint = document.querySelector("[data-cart-hint]");
+let totalGoods;
+const $goodsList = document.querySelector("[data-goodsList]");
+const $cartTable = document.querySelector("[data-cart-table]");
+const $cartHint = document.querySelector("[data-cart-hint]");
 
 // 取得所有產品列表：get API
 function getTotalGoods() {
-    axios.get(`${api_path}/products`).then((res) => {
-        totalGoods = res.data.products;
-        renderTotalGoods(totalGoods);
-    });
+    axios.get(`${api_path}/products`)
+        .then((res) => {
+            totalGoods = res.data.products;
+            renderTotalGoods(totalGoods);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 // 將產品列表渲染到畫面
@@ -82,16 +86,19 @@ document.querySelectorAll("[data-filter]").forEach((item) => {
 
 // ================================
 // 取得購物車資料
-let totalChart,
-    $cartList = document.querySelector("[data-cartList]"),
-    $totalCost = document.querySelector("[data-totalCost]");
+let totalChart;
+const $cartList = document.querySelector("[data-cartList]");
+const $totalCost = document.querySelector("[data-totalCost]");
 
 // 取得購物車資料：get API
 function getTotalChart() {
     axios.get(`${api_path}/carts`).then((res) => {
         totalChart = res.data;
         renderTotalChart(totalChart);
-    });
+    })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 // 將購物車列表渲染到畫面
@@ -153,6 +160,9 @@ function addToChart() {
                 .then((res) => {
                     let newTotalChart = res.data;
                     renderTotalChart(newTotalChart);
+                })
+                .catch((err) => {
+                    console.log(err);
                 });
         });
     });
@@ -167,10 +177,14 @@ function delSingleProduct() {
             e.preventDefault();
             loading_start();
             let chartItemId = delChartItemBtn.getAttribute("data-chartId");
-            axios.delete(`${api_path}/carts/${chartItemId}`).then((res) => {
-                // console.log("刪除成功", res);
-                renderTotalChart(res.data);
-            });
+            axios.delete(`${api_path}/carts/${chartItemId}`)
+                .then((res) => {
+                    // console.log("刪除成功", res);
+                    renderTotalChart(res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         });
     });
 }
@@ -180,12 +194,16 @@ function delSingleProduct() {
 document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
     e.preventDefault();
     loading_start();
-    axios.delete(`${api_path}/carts`).then((res) => {
-        // console.log("刪除全部成功", res);
-        $cartTable.classList.add("u-hidden");
-        $cartHint.classList.remove("u-hidden");
-        renderTotalChart(res.data);
-    });
+    axios.delete(`${api_path}/carts`)
+        .then((res) => {
+            // console.log("刪除全部成功", res);
+            $cartTable.classList.add("u-hidden");
+            $cartHint.classList.remove("u-hidden");
+            renderTotalChart(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 // 送出訂單
