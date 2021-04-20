@@ -2,17 +2,16 @@ const api_path = "https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/c
 
 // loading
 function loading_start() {
-    $('body').loading({
+    $("body").loading({
         stoppable: true,
-        theme: 'dark',
-        message: 'LOADING...',
+        theme: "dark",
+        message: "LOADING...",
     });
 }
 
 function loading_stop() {
-    $('body').loading("stop");
+    $("body").loading("stop");
 }
-
 
 // ================================
 // 取得所有產品列表
@@ -23,7 +22,8 @@ const $cartHint = document.querySelector("[data-cart-hint]");
 
 // 取得所有產品列表：get API
 function getTotalGoods() {
-    axios.get(`${api_path}/products`)
+    axios
+        .get(`${api_path}/products`)
         .then((res) => {
             totalGoods = res.data.products;
             renderTotalGoods(totalGoods);
@@ -92,10 +92,12 @@ const $totalCost = document.querySelector("[data-totalCost]");
 
 // 取得購物車資料：get API
 function getTotalChart() {
-    axios.get(`${api_path}/carts`).then((res) => {
-        totalChart = res.data;
-        renderTotalChart(totalChart);
-    })
+    axios
+        .get(`${api_path}/carts`)
+        .then((res) => {
+            totalChart = res.data;
+            renderTotalChart(totalChart);
+        })
         .catch((err) => {
             console.log(err);
         });
@@ -104,7 +106,6 @@ function getTotalChart() {
 // 將購物車列表渲染到畫面
 // todo 商品加入購物車後正確的數量
 function renderTotalChart(items) {
-
     // 若購物車內無商品則顯示提示，有商品則顯示列表
     if (items.carts.length === 0) {
         $cartTable.classList.add("u-hidden");
@@ -159,14 +160,16 @@ function addToChart() {
                 })
                 .then((res) => {
                     let newTotalChart = res.data;
+                    console.log("newTotalChart", newTotalChart);
+                    alertify.success("Add Success !", 3);
                     renderTotalChart(newTotalChart);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alertify.error("Add Fail. Please try again later.");
+                    //console.log(err);
                 });
         });
     });
-
 }
 
 // ================================
@@ -177,7 +180,8 @@ function delSingleProduct() {
             e.preventDefault();
             loading_start();
             let chartItemId = delChartItemBtn.getAttribute("data-chartId");
-            axios.delete(`${api_path}/carts/${chartItemId}`)
+            axios
+                .delete(`${api_path}/carts/${chartItemId}`)
                 .then((res) => {
                     // console.log("刪除成功", res);
                     renderTotalChart(res.data);
@@ -189,12 +193,12 @@ function delSingleProduct() {
     });
 }
 
-
 // 刪除購物車內的全部商品+ delete API
 document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
     e.preventDefault();
     loading_start();
-    axios.delete(`${api_path}/carts`)
+    axios
+        .delete(`${api_path}/carts`)
         .then((res) => {
             // console.log("刪除全部成功", res);
             $cartTable.classList.add("u-hidden");
@@ -207,6 +211,11 @@ document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
 });
 
 // 送出訂單
+const $sentOrderHint = document.querySelector("[data-sentOrder-hint]");
+// 驗證電話與電子郵件正則表達式
+let phoneRule = /[0-9]{8}/;
+let emailRule = /^(([.](?=[^.]|^))|[\w_%{|}#$~`+!?-])+@(?:[\w-]+\.)+[a-zA-Z.]{2,63}$/;
+
 document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
     e.preventDefault();
     loading_start();
@@ -229,49 +238,60 @@ document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
         },
     };
 
-    orderInfo.data.user.name = $orderName.value;
-    orderInfo.data.user.tel = $orderPhone.value;
-    orderInfo.data.user.email = $orderEmail.value;
-    orderInfo.data.user.address = $orderAddress.value;
-    orderInfo.data.user.payment = $orderPayment.value;
+    function checkingInput() {
+        if (emailRule.test($orderEmail) && phoneRule.test($orderPhone)) {
+            $sentOrderHint.classList.remove("is-show");
+            orderInfo.data.user.name = $orderName.value;
+            orderInfo.data.user.tel = $orderPhone.value;
+            orderInfo.data.user.email = $orderEmail.value;
+            orderInfo.data.user.address = $orderAddress.value;
+            orderInfo.data.user.payment = $orderPayment.value;
 
-    axios
-        .post(`${api_path}/orders`, orderInfo)
-        .then((res) => {
-            //console.log("送出訂單", res);
-            orderInfo = {
-                data: {
-                    user: {
-                        name: "",
-                        tel: "",
-                        email: "",
-                        address: "",
-                        payment: "",
-                    },
-                },
-            };
-            $cartList.innerHTML = "";
-            $totalCost.textContent = 0;
-            $cartTable.classList.add("u-hidden");
-            $cartHint.classList.remove("u-hidden");
-            $orderName.value = "";
-            $orderPhone.value = "";
-            $orderEmail.value = "";
-            $orderAddress.value = "";
-            $orderPayment.value = "";
+            axios
+                .post(`${api_path}/orders`, orderInfo)
+                .then((res) => {
+                    //console.log("送出訂單", res);
+                    orderInfo = {
+                        data: {
+                            user: {
+                                name: "",
+                                tel: "",
+                                email: "",
+                                address: "",
+                                payment: "",
+                            },
+                        },
+                    };
+                    $cartList.innerHTML = "";
+                    $totalCost.textContent = 0;
+                    $cartTable.classList.add("u-hidden");
+                    $cartHint.classList.remove("u-hidden");
+                    $orderName.value = "";
+                    $orderPhone.value = "";
+                    $orderEmail.value = "";
+                    $orderAddress.value = "";
+                    $orderPayment.value = "";
+                    $sentOrderHint.classList.remove("is-show");
+                    loading_stop();
+                    alertify.success("Order Success !", 3);
+                })
+                .catch((err) => {
+                    $sentOrderHint.classList.add("is-show");
+                    loading_stop();
+                });
+        } else {
             loading_stop();
-        })
-        .catch((err) => {
-            loading_stop();
-            document.querySelector("[data-sentOrder-hint]").classList.add("is-show");
-        });
+            $sentOrderHint.classList.add("is-show");
+        }
+    }
+
+    checkingInput();
 });
-
 
 // 初始化
 function init() {
-    loading_start();    // 啟動 loading 動畫
-    getTotalGoods();    // 取得所有產品列表
-    getTotalChart();    // 取得購物車列表
+    loading_start(); // 啟動 loading 動畫
+    getTotalGoods(); // 取得所有產品列表
+    getTotalChart(); // 取得購物車列表
 }
 init();
