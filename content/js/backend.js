@@ -28,41 +28,48 @@ function getAllOrder() {
         })
         .then((res) => {
             totalOrders = res.data.orders;
-            renderChart(totalOrders);
             renderTotalOrders(totalOrders);
         })
         .catch((err) => {
-            console.log(err);
+            //console.log(err);
+            alertify.error("Get orders fail. Please try again later.");
         });
 }
 getAllOrder();
 
 // 將所有訂單列表渲染到畫面
 function renderTotalOrders(infos) {
-    $ordersList.innerHTML = "";
-    infos.forEach((order) => {
-        // 把訂單中的商品名稱撈出來後放進陣列裡
-        let orderDetails = [];
-        for (let i = 0; i < order.products.length; i++) {
-            orderDetails.push(order.products[i].title);
-        }
+    console.log(infos);
+    if (infos.length !== 0) {
+        $ordersList.innerHTML = "";
+        infos.forEach((order) => {
+            // 把訂單中的商品名稱撈出來後放進陣列裡
+            let orderDetails = [];
+            for (let i = 0; i < order.products.length; i++) {
+                orderDetails.push(order.products[i].title);
+            }
 
-        $ordersList.innerHTML += `<tr>
-            <td class="c-table__td">${order.user.name}</td>
-            <td class="c-table__td">${orderDetails}</td>
-            <td class="c-table__td">${order.user.payment}</td>
-            <td class="c-table__td">${order.paid}</td>
-            <td class="c-table__td">${order.total}</td>
-            <td class="c-table__td">
-                <a href="" data-delOrder="${order.id}">
-                    <i class="o-icon o-icon--clear"></i>
-                </a>
-            </td>
-        </tr>`;
-        // 綁上刪除特定訂單事件
-        delOrder();
+            $ordersList.innerHTML += `<tr>
+                <td class="c-table__td">${order.user.name}</td>
+                <td class="c-table__td">${orderDetails}</td>
+                <td class="c-table__td">${order.user.payment}</td>
+                <td class="c-table__td">${order.paid}</td>
+                <td class="c-table__td">${order.total}</td>
+                <td class="c-table__td">
+                    <a href="" data-delOrder="${order.id}">
+                        <i class="o-icon o-icon--clear"></i>
+                    </a>
+                </td>
+            </tr>`;
+            // 綁上刪除特定訂單事件
+            delOrder();
+            loading_stop();
+        });
+        renderChart(totalOrders);
+    } else {
         loading_stop();
-    });
+        alertify.error("no orders there.");
+    }
 }
 
 // 刪除特定訂單
@@ -79,11 +86,12 @@ function delOrder() {
                     },
                 })
                 .then((res) => {
-                    console.log("刪除特定訂單成功");
                     renderTotalOrders(res.data.orders);
+                    renderChart(res.data.orders);
+                    alertify.success("Delete Success !", 3);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    alertify.error("Something Wrong. Please try again later.");
                 });
         });
     });
@@ -99,11 +107,12 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
             },
         })
         .then((res) => {
-            console.log("刪除全部訂單成功");
+            alertify.success("Delete Success !", 3);
             renderTotalOrders(res.data.orders);
+            renderChart(res.data.orders);
         })
         .catch((err) => {
-            console.log(err);
+            alertify.error("Something Wrong. Please try again later.");
         });
 });
 

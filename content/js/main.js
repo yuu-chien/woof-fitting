@@ -160,7 +160,6 @@ function addToChart() {
                 })
                 .then((res) => {
                     let newTotalChart = res.data;
-                    console.log("newTotalChart", newTotalChart);
                     alertify.success("Add Success !", 3);
                     renderTotalChart(newTotalChart);
                 })
@@ -214,7 +213,7 @@ document.querySelector("[data-emptyChart]").addEventListener("click", (e) => {
 const $sentOrderHint = document.querySelector("[data-sentOrder-hint]");
 // 驗證電話與電子郵件正則表達式
 let phoneRule = /[0-9]{8}/;
-let emailRule = /^(([.](?=[^.]|^))|[\w_%{|}#$~`+!?-])+@(?:[\w-]+\.)+[a-zA-Z.]{2,63}$/;
+let emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
 document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
     e.preventDefault();
@@ -239,7 +238,7 @@ document.querySelector("[data-sentOrder]").addEventListener("click", (e) => {
     };
 
     function checkingInput() {
-        if (emailRule.test($orderEmail) && phoneRule.test($orderPhone)) {
+        if (emailRule.test($orderEmail.value) && phoneRule.test($orderPhone.value)) {
             $sentOrderHint.classList.remove("is-show");
             orderInfo.data.user.name = $orderName.value;
             orderInfo.data.user.tel = $orderPhone.value;

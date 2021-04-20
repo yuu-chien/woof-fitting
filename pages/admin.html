@@ -1,98 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet" />
+        <!-- C3 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.css" />
+        <!-- jquery-loading -->
+        <link rel="stylesheet" href="../content/vender/jquery-loading/jquery-loading.css" />
+        <!-- alertify -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+        <!--  -->
+        <link rel="stylesheet" href="../content/css/main.min.css" />
+        <title>Wolf Fitting．Backend</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet" />
-    <!-- C3 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.css" />
-    <!-- jquery-loading -->
-    <link rel="stylesheet" href="../content/vender/jquery-loading/jquery-loading.css">
+    <body>
+        <section class="l-header">
+            <div class="l-header__cnt">
+                <div class="l-header__logo">
+                    <h1 class="c-logo">
+                        <span>WOLF FITTING</span>
+                    </h1>
+                </div>
+                <div class="l-header__menu">
+                    <ul class="c-menu">
+                        <li class="c-menu__item">
+                            <a href="#">Backend</a>
+                        </li>
+                        <li class="c-menu__item">
+                            <a href="#">Admin Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="l-container">
+            <div class="l-container__cnt">
+                <div class="l-heading">
+                    <div class="o-title">Products Chart</div>
+                </div>
+                <div class="c-chart"></div>
+            </div>
+        </section>
+        <section class="l-container l-container--gy">
+            <div class="l-container__cnt">
+                <div class="l-heading">
+                    <div class="o-title">All Orders</div>
+                </div>
+                <table class="c-table u-tal">
+                    <thead>
+                        <tr>
+                            <th class="c-table__th">Name</th>
+                            <th class="c-table__th">Items</th>
+                            <th class="c-table__th">Payment</th>
+                            <th class="c-table__th">State</th>
+                            <th class="c-table__th">Total</th>
+                            <th class="c-table__th u-tac"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-ordersList></tbody>
+                </table>
+                <div class="l-actions l-actions--part">
+                    <div class="l-actions__item">
+                        <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyOrders>刪除全部訂單</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
     <!--  -->
-    <link rel="stylesheet" href="../content/css/main.min.css" />
-    <title>Wolf Fitting．Backend</title>
-</head>
-
-<body>
-    <section class="l-header">
-        <div class="l-header__cnt">
-            <div class="l-header__logo">
-                <h1 class="c-logo">
-                    <span>WOLF FITTING</span>
-                </h1>
-            </div>
-            <div class="l-header__menu">
-                <ul class="c-menu">
-                    <li class="c-menu__item">
-                        <a href="#">Backend</a>
-                    </li>
-                    <li class="c-menu__item">
-                        <a href="#">Admin Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <section class="l-container">
-        <div class="l-container__cnt">
-            <div class="l-heading">
-                <div class="o-title">Products Chart</div>
-            </div>
-            <div class="c-chart"></div>
-        </div>
-    </section>
-    <section class="l-container l-container--gy">
-        <div class="l-container__cnt">
-            <div class="l-heading">
-                <div class="o-title">All Orders</div>
-            </div>
-            <table class="c-table u-tal">
-                <thead>
-                    <tr>
-                        <th class="c-table__th">Name</th>
-                        <th class="c-table__th">Items</th>
-                        <th class="c-table__th">Payment</th>
-                        <th class="c-table__th">State</th>
-                        <th class="c-table__th">Total</th>
-                        <th class="c-table__th u-tac"></th>
-                    </tr>
-                </thead>
-                <tbody data-ordersList></tbody>
-            </table>
-            <div class="l-actions l-actions--part">
-                <div class="l-actions__item">
-                    <a href="" class="o-btn o-btn--round o-btn--outline" data-emptyOrders>刪除全部訂單</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="confirm" class="c-popup" style="display: none;">
-        <div class="c-popup__cnt">
-            12345687987945646478
-            <div class="l-actions l-actions--part">
-                <div class="l-actions__item">
-                    <a href="" class="o-btn o-btn--round o-btn--outline">Confirm</a>
-                </div>
-                <div class="l-actions__item">
-                    <a href="" class="o-btn o-btn--round o-btn--outline">Cancel</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.js"></script>
-<!--  -->
-<script src="../content/vender/jquery-3.6.0.js"></script>
-<!--  -->
-<script src="../content/vender/jquery-loading/jquery-loading.js"></script>
-<!--  -->
-<script src="../content/js/backend.js"></script>
-
+    <script src="../content/vender/jquery-3.6.0.js"></script>
+    <!--  -->
+    <script src="../content/vender/jquery-loading/jquery-loading.js"></script>
+    <!--  -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!--  -->
+    <script src="../content/js/backend.js"></script>
 </html>
