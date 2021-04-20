@@ -3,23 +3,21 @@ const uid = "1bbgXGk3kMgjWsJg2zzJjJ7jJxA3";
 
 // loading
 function loading_start() {
-    $('body').loading({
+    $("body").loading({
         stoppable: true,
-        theme: 'dark',
-        message: 'WORKING...',
+        theme: "dark",
+        message: "WORKING...",
     });
 }
 
 function loading_stop() {
-    $('body').loading("stop");
+    $("body").loading("stop");
 }
 
 loading_start();
 
-
-
-let totalOrders,
-    $ordersList = document.querySelector("[data-ordersList]");
+let totalOrders;
+const $ordersList = document.querySelector("[data-ordersList]");
 
 function getAllOrder() {
     axios
@@ -32,6 +30,9 @@ function getAllOrder() {
             totalOrders = res.data.orders;
             renderChart(totalOrders);
             renderTotalOrders(totalOrders);
+        })
+        .catch((err) => {
+            console.log(err);
         });
 }
 getAllOrder();
@@ -80,6 +81,9 @@ function delOrder() {
                 .then((res) => {
                     console.log("刪除特定訂單成功");
                     renderTotalOrders(res.data.orders);
+                })
+                .catch((err) => {
+                    console.log(err);
                 });
         });
     });
@@ -88,7 +92,6 @@ function delOrder() {
 // 刪除全部訂單
 document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("123");
     axios
         .delete(`${api_admin_path}/orders`, {
             headers: {
@@ -98,6 +101,9 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
         .then((res) => {
             console.log("刪除全部訂單成功");
             renderTotalOrders(res.data.orders);
+        })
+        .catch((err) => {
+            console.log(err);
         });
 });
 
@@ -105,22 +111,18 @@ document.querySelector("[data-emptyOrders]").addEventListener("click", (e) => {
 // C3
 
 function renderChart(totalOrders) {
-
     let categories = {};
     let areaAry;
     totalOrders.forEach((item) => {
-
         item.products.forEach((i) => {
-
             if (categories[i.category] == undefined) {
                 categories[i.category] = 1;
             } else {
                 categories[i.category] += 1;
             }
-        })
+        });
 
         areaAry = Object.keys(categories);
-
     });
 
     c3.generate({
@@ -130,8 +132,7 @@ function renderChart(totalOrders) {
             keys: {
                 value: areaAry,
             },
-            type: 'donut'
-        }
+            type: "donut",
+        },
     });
-
 }
