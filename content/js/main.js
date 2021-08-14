@@ -1,4 +1,4 @@
-const api_path = "https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/ch.yu";
+const api_path = "https://livejs-api.hexschool.io/api/livejs/v1/customer/ch.yu";
 
 // loading
 function loading_start() {
